@@ -1,24 +1,36 @@
 defmodule Challenge do
+  @moduledoc """
+  Documentation for `Challenge`.
 
-  def solve_cases(case_directory_path, number_cases, number_cases) do
-    list = read_case(case_directory_path <> "/case#{number_cases}.txt")
-    {:ok, matrix} = create_matrix(list, {})
-    {i, j} = find_prince(matrix, 0, 0)
-    amount_land = count_land(matrix, [], i, j, 0)
-    IO.puts("Case #{number_cases}: #{amount_land}")
-    IO.puts("The initial location of de prince is: column #{i}, row #{j}\n")
-    print_list(list)
+  Este modulo consta de 7 funciones, las cuales son utilizadas para la solución
+  del reto primer reto con nombre "the king and his son", donde el principe
+  despues de abandonar el reino de su padre, se encuentra en un lugar donde solo
+  hay agua y tierra, al no saber nadar solo puede recorrer las zonas con tierra
+  como entrada recibe la dirección de un directorio o carpeta donde estan los
+  archivos .txt de cada caso y como salida, imprime la cantidad de tierra que
+  puede recorrer incluida en la que se encuentra el principe, la ubicación inicial
+  del principe e imprime el caso que se esta evaluando.
+  """
+  def solve_cases() do
+    path = String.replace(IO.gets("Enter the case directory path:\n"), "\\", "/")
+    list_Case_paths = Path.wildcard(String.replace(path, "\n", "")<>"/*.txt")
+    solve_cases(list_Case_paths, 1)
   end
 
-  def solve_cases(case_directory_path, number_cases, count) do
-    list = read_case(case_directory_path <> "/case#{count}.txt")
+  def solve_cases([], _count) do
+    IO.puts("All cases solved\n")
+    :ok
+  end
+
+  def solve_cases(list_case_paths, count) do
+    list = read_case(hd(list_case_paths))
     {:ok, matrix} = create_matrix(list, {})
     {i, j} = find_prince(matrix, 0, 0)
     amount_land =  count_land(matrix, [], i, j, 0)
     IO.puts("Case #{count}: #{amount_land}")
     IO.puts("The initial location of de prince is: column #{i}, row #{j}\n")
     print_list(list)
-    solve_cases(case_directory_path, number_cases, count+1)
+    solve_cases(tl(list_case_paths), count+1)
   end
 
   def read_case(path) do
@@ -106,6 +118,4 @@ defmodule Challenge do
   end
 end
 
-path = String.replace(IO.gets("Enter the case directory path:\n"), "\\", "/")
-{number_cases, _} = Integer.parse(IO.gets("Enter the number cases:\n"))
-Challenge.solve_cases(String.replace(path, "\n", ""), number_cases, 1)
+Challenge.solve_cases()

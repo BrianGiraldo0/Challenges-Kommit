@@ -1,2 +1,2 @@
-# Challenges-Kommit
-This is a repository for kommit challenges...
+# ***Brian Giraldo***
+### Soy estudiante de ingeniería de sistemas y computación actualmente cursando 9no semestre en la Universidad del Quindío. Tengo la capacidad de destreza para adaptarme a todo tipo de entornos, a esto sumándole el buen manejo de crisis y la comunicación asertiva. Me caracterizo también por mi facilidad para el trabajo en equipo y por mi entusiasmo por aprender y desempeñar mis habilidades. Finalmente, poseo un gran interés en desarrollarme en áreas tales como ingeniería de software, desarrollo de software, HCI y desarrollo front end `#de0000`.

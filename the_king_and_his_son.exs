@@ -24,7 +24,7 @@ defmodule Challenge do
   def read_case(path) do
     case File.read(path) do
       {:ok, text} -> String.split(text, "\r\n", [trim: true])
-      {:error, _} -> IO.puts("File doesn't exist")
+      {:error, _} -> IO.puts("File doesn't exist: #{path}")
     end
   end
 
@@ -106,5 +106,6 @@ defmodule Challenge do
   end
 end
 
-Challenge.solve_cases("C:/Users/BRIAN/Downloads/Kommit/Challenges-Kommit/cases", 3, 1)
-#Challenge.solve_cases(IO.gets("Enter the case directory path:\n"), IO.gets("Enter the number cases:\n"), 1)
+path = String.replace(IO.gets("Enter the case directory path:\n"), "\\", "/")
+{number_cases, _} = Integer.parse(IO.gets("Enter the number cases:\n"))
+Challenge.solve_cases(String.replace(path, "\n", ""), number_cases, 1)
